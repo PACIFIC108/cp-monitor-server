@@ -10,7 +10,7 @@
     app.use(express.json()); 
 	app.use(cookieParser());
 	app.use(cors({
-	    origin: 'cp-monitor.vercel.app', 
+	    origin: 'https://cp-monitor.vercel.app', 
 	    credentials: true, // Allow cookies and authorization headers
 	}));
 
