@@ -8,19 +8,27 @@
 	const app=express();
 
     app.use(express.json()); 
-	app.use(cookieParser());
-	app.use(cors({
-	    origin: 'https://cp-monitor.vercel.app', 
-	    credentials: true, // Allow cookies and authorization headers
-	}));
+		app.use(cookieParser());
+		app.use(cors({
+		    origin: 'https://cp-monitor.vercel.app', 
+		    credentials: true, // Allow cookies and authorization headers
+		    methods: "GET,POST,PUT,DELETE,OPTIONS",  // Ensure all methods are allowed
+		    allowedHeaders: "Content-Type,Authorization"
+		}));
+
+    
+
+    app.get('/',(req,res)=>{
+       res/send('Backend is running...')
+    });
 
 
     app.get("/auth/checkAuth", (req, res) => {
-	  const token = req.cookies.token; // Get token from cookies
+	    const token = req.cookies.token; // Get token from cookies
        // console.log(token)
 			  if (!token) return res.status(401).json({ message: "Unauthorized" });
 
-			  jwt.verify(token, "JaiBajarangBali", (err, decoded) => {
+			   jwt.verify(token, "JaiBajarangBali", (err, decoded) => {
 			    if (err) return res.status(401).json({ message: "Invalid token" });
 
 			    res.status(200).json({ message: "Authenticated", user: decoded });
