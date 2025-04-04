@@ -10,7 +10,7 @@
     app.use(express.json()); 
 	app.use(cookieParser());
 	app.use(cors({
-	    origin: 'http://localhost:5173', // Allow requests from frontend
+	    origin: 'cp-monitor.vercel.app', 
 	    credentials: true, // Allow cookies and authorization headers
 	}));
 
