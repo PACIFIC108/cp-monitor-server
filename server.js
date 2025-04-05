@@ -10,7 +10,7 @@
     app.use(express.json()); 
 		app.use(cookieParser());
 		app.use(cors({
-		    origin: 'https://cp-monitor.vercel.app', 
+		    origin: 'http://localhost:5173',
 		    credentials: true, // Allow cookies and authorization headers
 		    methods: "GET,POST,PUT,DELETE,OPTIONS",  // Ensure all methods are allowed
 		    allowedHeaders: "Content-Type,Authorization"
