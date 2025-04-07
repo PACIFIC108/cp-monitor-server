@@ -64,7 +64,8 @@
 	    	return res
 			  .cookie("token", token, {
 			    httpOnly: true,
-			    sameSite: "strict",
+			    sameSite: "None",
+			    secure: true,
 			    maxAge: 60 * 60 * 1000,
 			  }) 
 			  .json({ token }); 
