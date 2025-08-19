@@ -100,25 +100,17 @@ exports.callback = async (req, res) => {
             },
         });
         const { id_token, access_token } = data;
-        // console.log(code, data)
+
         if (!id_token && !access_token) return res.status(400).send("❌ No ID token received");
 
         const claims = jwt.decode(id_token);
         let { handle } = claims || {};
 
-        // Fallback: fetch profile info if some claim is missing
-        // if (!handle || !avatar || !friends) {
-            const resp = await axios.get(
-                `https://codeforces.com/api/user.info?handles=${handle || ""}`
-            );
-            // if (resp.data.status === "OK") {
-                const user = resp.data.result[0];
-                // handle = handle || user.handle;
-                // rating = rating || user.rating;
-                // avatar = avatar || user.titlePhoto;
-                // friends = user.friendOfCount;
-            // }
-        // }
+        const resp = await axios.get(
+            `https://codeforces.com/api/user.info?handles=${handle || ""}`
+        );
+        const user = resp.data.result[0];
+                
         
         const sessionToken = jwt.sign( user, JWT_SECRET, {
             expiresIn: "7d",
@@ -130,7 +122,7 @@ exports.callback = async (req, res) => {
             secure: process.env.NODE_ENV === "production",
         });
 
-        res.redirect(CLIENT_URL + "/app");
+        res.redirect(CLIENT_URL);
     } catch (err) {
         console.error("OAuth Error:", err.response?.data || err.message);
         res.status(500).send("❌ Authentication failed");
