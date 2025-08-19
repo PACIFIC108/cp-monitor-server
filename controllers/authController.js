@@ -118,7 +118,7 @@ exports.callback = async (req, res) => {
 
         res.cookie("session", sessionToken, {
             httpOnly: true,
-            sameSite: "lax",
+            sameSite: "none",
             secure: process.env.NODE_ENV === "production",
         });
 
