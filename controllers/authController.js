@@ -122,7 +122,7 @@ exports.callback = async (req, res) => {
             secure: process.env.NODE_ENV === "production",
         });
 
-        res.redirect(CLIENT_URL);
+        res.redirect(CLIENT_URL + "/");
     } catch (err) {
         console.error("OAuth Error:", err.response?.data || err.message);
         res.status(500).send("❌ Authentication failed");
