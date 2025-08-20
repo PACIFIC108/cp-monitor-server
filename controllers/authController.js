@@ -120,6 +120,8 @@ exports.callback = async (req, res) => {
             httpOnly: true,
             sameSite: "none",
             secure: process.env.NODE_ENV === "production",
+              domain: ".onrender.com", 
+              path: "/",
         });
 
         res.redirect(CLIENT_URL + "/app");
