@@ -116,14 +116,14 @@ exports.callback = async (req, res) => {
             expiresIn: "7d",
         });
 
-        // res.cookie("session", sessionToken, {
-        //     httpOnly: true,
-        //     sameSite: "strict",
-        //     // secure: true,
-        //     // domain: "cp-monitor.onrender.com",
-        //     path: "/",
-        //     maxAge: 7*24*60*60*1000
-        // });
+        res.cookie("session", sessionToken, {
+            httpOnly: true,
+            sameSite: "none",
+            secure: true,
+            // domain: "cp-monitor.onrender.com",
+            // path: "/",
+            maxAge: 7*24*60*60*1000
+        });
 
         res.redirect(CLIENT_URL + "/app");
     } catch (err) {
