@@ -120,7 +120,7 @@ exports.callback = async (req, res) => {
             httpOnly: true,
             sameSite: "none",
             secure: process.env.NODE_ENV === "production",
-              domain: ".onrender.com", 
+              domain: "cp-monitor-server.onrender.com", 
               path: "/",
         });
 
