@@ -133,7 +133,6 @@ exports.callback = async (req, res) => {
 };
 
 exports.verifyUser = (req, res) => {
-    return res.status(201).json(handle:"__PACIFIC__");
     const token = req.cookies.session;
     if (!token) return res.status(401).send("Not authenticated");
 
