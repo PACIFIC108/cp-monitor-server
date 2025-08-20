@@ -1,12 +1,12 @@
-const express = require('express');
 const dotenv = require('dotenv');
+dotenv.config();
+const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 
-dotenv.config();
 connectDB();
 
 const app = express();
@@ -17,8 +17,8 @@ app.use(cookieParser());
 app.use(cors({
     origin: process.env.CLIENT_URL,
     credentials: true,
-    methods: "GET,POST,PUT,DELETE,OPTIONS",
-    allowedHeaders: "Content-Type,Authorization"
+    // methods: "GET,POST,PUT,DELETE,OPTIONS",
+    // allowedHeaders: "Content-Type,Authorization"
 }));
 
 // Rate limiting
