@@ -118,8 +118,8 @@ exports.callback = async (req, res) => {
 
         res.cookie("session", sessionToken, {
             httpOnly: true,
-            // sameSite: "none",
-            // secure: true,
+            sameSite: "none",
+            secure: true,
             // domain: "cp-monitor.onrender.com",
             path: "/",
             maxAge: 7*24*60*60*1000
