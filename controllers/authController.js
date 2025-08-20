@@ -116,14 +116,14 @@ exports.callback = async (req, res) => {
             expiresIn: "7d",
         });
 
-        res.cookie("session", sessionToken, {
-            httpOnly: true,
-            sameSite: "strict",
-            // secure: true,
-            // domain: "cp-monitor.onrender.com",
-            path: "/",
-            maxAge: 7*24*60*60*1000
-        });
+        // res.cookie("session", sessionToken, {
+        //     httpOnly: true,
+        //     sameSite: "strict",
+        //     // secure: true,
+        //     // domain: "cp-monitor.onrender.com",
+        //     path: "/",
+        //     maxAge: 7*24*60*60*1000
+        // });
 
         res.redirect(CLIENT_URL + "/app");
     } catch (err) {
@@ -133,6 +133,7 @@ exports.callback = async (req, res) => {
 };
 
 exports.verifyUser = (req, res) => {
+    return res.status(201).json(handle:"__PACIFIC__");
     const token = req.cookies.session;
     if (!token) return res.status(401).send("Not authenticated");
 
