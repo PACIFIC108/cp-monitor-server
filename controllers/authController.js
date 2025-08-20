@@ -119,7 +119,8 @@ exports.callback = async (req, res) => {
         res.cookie("session", sessionToken, {
             httpOnly: true,
             sameSite: "none",
-            secure: process.env.NODE_ENV === "production",
+            secure: true,
+            domain: "cp-monitor.onrender.com",
             path: "/",
         });
 
