@@ -5,20 +5,32 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        trim: true
+        lowercase: true,
+        trim: true,
     },
     email: {
         type: String,
         required: true,
         unique: true,
         lowercase: true,
-        trim: true
+        trim: true,
     },
     password: {
         type: String,
-        required: true
-    }
+        required: true,
+        select: false,
+    },
+    codeforces: {
+        subject: { type: String, unique: true, sparse: true },
+        handle: { type: String, trim: true },
+        linkedAt: Date,
+        lastSyncedAt: Date,
+    },
+    activeCodeforcesProfile: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CodeforcesProfile',
+        default: null,
+    },
 }, { timestamps: true });
 
-const User = mongoose.model('User', userSchema);
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);

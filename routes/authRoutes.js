@@ -1,16 +1,17 @@
 const express = require('express');
-const { authorizeUser, callback, verifyUser, loginUser, signupUser, logoutUser, checkAuth, logoutApp } = require('../controllers/authController');
-const { protect } = require('../middleware/authMiddleware');
+const controller = require('../controllers/authController');
+const { protect, protectCodeforces } = require('../middleware/authMiddleware');
+const asyncHandler = require('../utils/asyncHandler');
 
 const router = express.Router();
 
-router.post('/login', loginUser);
-router.post('/signup', signupUser);
-router.post('/logoutUser', logoutUser);
-router.post('/logout', logoutApp);
-router.get('/checkAuth', protect, checkAuth);
-router.get('/authLogin', authorizeUser);
-router.get('/callback', callback);
-router.get('/me', verifyUser);
+router.post('/login', asyncHandler(controller.loginUser));
+router.post('/signup', asyncHandler(controller.signupUser));
+router.post('/logoutUser', controller.logoutUser);
+router.post('/logout', controller.logoutApp);
+router.get('/checkAuth', asyncHandler(protect), controller.checkAuth);
+router.get('/authLogin', asyncHandler(protect), asyncHandler(controller.authorizeUser));
+router.get('/callback', asyncHandler(protect), asyncHandler(controller.callback));
+router.get('/me', protectCodeforces, controller.verifyUser);
 
 module.exports = router;
